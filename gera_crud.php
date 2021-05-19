@@ -62,7 +62,7 @@ $sql_nome_tabela = "SHOW TABLES";
                 $.post({
                     type: "POST",
                     data: dados,
-                    url: "gera_crud_back_end.php",
+                    url: "gera_crud_backend.php",
                     success: function(resultado) {
                            console.log(resultado);
                         $("#links_crud").html("<button onclick='insert()'  class='btn btn-primary mb-3'>INSERT</button><button onclick='lista()' class='btn btn-primary mb-3'>LISTA</button>");
