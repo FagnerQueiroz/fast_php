@@ -19,8 +19,8 @@ if (isset($_POST['NOME_TABELA'])) {
             $valores_update .= $linha["Field"] . '=:' . $linha["Field"] . ',';
             $campos_insert .= $linha["Field"] . ',';
             $valores_insert .= ':' . $linha["Field"] . ',';
-            $bind_paramentros .= '$cadastrar->bindParam(":' . $linha["Field"] . '", $_POST["' . $linha["Field"] . '"], PDO::PARAM_STR);
-';
+        $bind_paramentros .= '$cadastrar->bindParam(":' . $linha["Field"] . '", $_POST["' . $linha["Field"] . '"], PDO::PARAM_STR);
+    ';
         } else {
             $id_tabela = $linha["Field"];
         }
@@ -62,7 +62,7 @@ if (isset($_POST['NOME_TABELA'])) {
             $campos_insert_detalhe .= $linha_detalhe["Field"] . ',';
             $valores_insert_detalhe .= ':' . $linha_detalhe["Field"] . ',';
             $bind_paramentros_detalhe .= '$cadastrar->bindParam(":' . $linha_detalhe["Field"] . '", $_POST["' . $linha_detalhe["Field"] . '"], PDO::PARAM_STR);
-';
+        ';
         } else {
             $id_tabela_detalhe = $linha_detalhe["Field"];
         }
@@ -139,8 +139,6 @@ window.onload = function() {
     </div>
   </div>
 </div>
-
-
 
 <!----------------------------------------LISTA DETALHE------------------------------------------>
 <div id="lista_detalhe">
@@ -498,16 +496,12 @@ function abrir_registro(id){
 </body>
                 ';
 
-
     if (is_file($_POST['NOME_TABELA'] . '/' . $_POST['NOME_TABELA'] . '_lista.php')) {
 
         unlink($_POST['NOME_TABELA'] . '/' . $_POST['NOME_TABELA'] . '_lista.php');
     }
 
     file_put_contents($_POST['NOME_TABELA'] . '/' . $_POST['NOME_TABELA'] . '_lista.php', $lista);
-
-
-
 
     /*--------------------------------------GERA BACKEND REGRA DE NEGÓCIO-------------------------------------------------*/
 
@@ -540,14 +534,14 @@ echo $linha["LAST_INSERT_ID()"];
 }
 /********************************INSERT NA TABELA DETALHE *****************************/
 if(isset($_POST["CADASTRAR_DETALHE"])){
-$consulta = "INSERT INTO ' . $_POST['NOME_TABELA_DETALHE'] . ' ' . $backend_detalhe . ' 
-$cadastrar = $conexao->prepare($consulta);
-' . $bind_paramentros_detalhe . '
+    $consulta = "INSERT INTO ' . $_POST['NOME_TABELA_DETALHE'] . ' ' . $backend_detalhe . ' 
+    $cadastrar = $conexao->prepare($consulta);
+    ' . $bind_paramentros_detalhe . '
 try{
-$cadastrar ->execute();
-$resultado = $conexao->query("SELECT LAST_INSERT_ID()");
-$linha = $resultado->fetch(PDO::FETCH_ASSOC); 
-echo $linha["LAST_INSERT_ID()"];
+    $cadastrar ->execute();
+    $resultado = $conexao->query("SELECT LAST_INSERT_ID()");
+    $linha = $resultado->fetch(PDO::FETCH_ASSOC); 
+    echo $linha["LAST_INSERT_ID()"];
 }catch(Exception $e){
     echo "0";
     //echo "Erro ao cadastrar: ". $e->getMessage();
@@ -558,7 +552,7 @@ echo $linha["LAST_INSERT_ID()"];
 if(isset($_POST["EDITAR_REGISTRO"])){
     $consulta = "UPDATE ' . $_POST['NOME_TABELA'] . ' SET ' . $valores_update . '  WHERE ' . $id_tabela . '  = ".$_POST["EDITAR_REGISTRO"];
     $cadastrar = $conexao->prepare($consulta);
-    ' . $bind_paramentros . '
+    '. $bind_paramentros .'
     try{
     $cadastrar ->execute();
     echo $_POST["EDITAR_REGISTRO"];
@@ -593,7 +587,7 @@ if(isset($_POST["EDITAR_REGISTRO"])){
         echo $resultado;
         }catch(Exception $e){
         
-            echo "Erro ao cadastrar: ". $e->getMessage();
+            echo "Erro ao deletar: ". $e->getMessage();
         }
         }
     
@@ -609,7 +603,7 @@ if(isset($_POST["EDITAR_REGISTRO"])){
         echo $resultado;
         }catch(Exception $e){
         
-            echo "Erro ao cadastrar: ". $e->getMessage();
+            echo "Erro ao deletar: ". $e->getMessage();
         }
         }
     
@@ -629,7 +623,7 @@ if(isset($_POST["LISTAR_REGISTROS"])){
       $i = ($_POST["LISTAR_REGISTROS"]-1);
       $paginacao = \'<nav aria-label="Page navigation example">
   <ul class="pagination">
-  <li class="page-item"><a class="page-link" onclick="lista_registros(\'.($_POST["LISTAR_REGISTROS"]-1).\')">Anterior</a></li>
+  <li class="page-item"><a style="cursor:pointer" class="page-link" onclick="lista_registros(\'.($_POST["LISTAR_REGISTROS"]-1).\')">Anterior</a></li>
   \';
   $proxima_pagina = ($_POST["LISTAR_REGISTROS"]+1);
    if($proxima_pagina  > $quantidade_paginas ){
@@ -639,10 +633,10 @@ if(isset($_POST["LISTAR_REGISTROS"])){
   if ($quantidade_paginas > 0)  {
       while($i < $quantidade_paginas and $i < ($_POST["LISTAR_REGISTROS"]+5) ){
         $i++;
-        $paginacao.=\'<li class="page-item"><a class="page-link" onclick="lista_registros(\'.$i.\')">\'.$i.\'</a></li>\';
+        $paginacao.=\'<li class="page-item"><a style="cursor:pointer" class="page-link" onclick="lista_registros(\'.$i.\')">\'.$i.\'</a></li>\';
       }
   }
-      $paginacao.=\'<li class="page-item"><a class="page-link" onclick="lista_registros(\'.$proxima_pagina.\')" >Próximo</a></li>
+      $paginacao.=\'<li class="page-item"><a style="cursor:pointer"class="page-link" onclick="lista_registros(\'.$proxima_pagina.\')" >Próximo</a></li>
       </ul>
     </nav>
   \';
@@ -678,7 +672,7 @@ if(isset($_POST["LISTAR_REGISTROS_DETALHE"])){
       $i = ($_POST["LISTAR_REGISTROS_DETALHE"]-1);
       $paginacao = \'<nav aria-label="Page navigation example">
   <ul class="pagination">
-  <li class="page-item"><a class="page-link" onclick="lista_registros_detalhe(\'.($_POST["LISTAR_REGISTROS_DETALHE"]-1).\')">Anterior</a></li>
+  <li class="page-item"><a style="cursor:pointer" class="page-link" onclick="lista_registros_detalhe(\'.($_POST["LISTAR_REGISTROS_DETALHE"]-1).\')">Anterior</a></li>
   \';
   $proxima_pagina = ($_POST["LISTAR_REGISTROS_DETALHE"]+1);
    if($proxima_pagina  > $quantidade_paginas ){
@@ -688,10 +682,10 @@ if(isset($_POST["LISTAR_REGISTROS_DETALHE"])){
   if ($quantidade_paginas > 0)  {
       while($i < $quantidade_paginas and $i < ($_POST["LISTAR_REGISTROS_DETALHE"]+5) ){
         $i++;
-        $paginacao.=\'<li class="page-item"><a class="page-link" onclick="lista_registros_detalhe(\'.$i.\')">\'.$i.\'</a></li>\';
+        $paginacao.=\'<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="lista_registros_detalhe(\'.$i.\')">\'.$i.\'</a></li>\';
       }
   }
-      $paginacao.=\'<li class="page-item"><a class="page-link" onclick="lista_registros_detalhe(\'.$proxima_pagina.\')" >Próximo</a></li>
+      $paginacao.=\'<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="lista_registros_detalhe(\'.$proxima_pagina.\')" >Próximo</a></li>
       </ul>
     </nav>
   \';
@@ -719,7 +713,7 @@ if(isset($_POST["LISTA_UNICO_REGISTRO"])){
     $resultado = $conexao->query( $consulta );
     if($linha = $resultado->fetch(PDO::FETCH_ASSOC)){
 
-        $array_registro= [' . $linha_registro_unico . '];
+        $array_registro= [' . substr_replace( $linha_registro_unico, '', -1) . '];
         echo json_encode($array_registro);
     
 }else{
@@ -737,7 +731,7 @@ if(isset($_POST["LISTA_UNICO_REGISTRO_DETALHE"])){
     $resultado = $conexao->query( $consulta );
     if($linha_detalhe = $resultado->fetch(PDO::FETCH_ASSOC)){
 
-        $array_registro= [' . $linha_registro_unico_detalhe . '];
+        $array_registro= ['  . substr_replace( $linha_registro_unico_detalhe, '', -1). '];
         echo json_encode($array_registro);
     
 }else{
@@ -745,8 +739,6 @@ if(isset($_POST["LISTA_UNICO_REGISTRO_DETALHE"])){
 }
 
 }
-
-
 
 /**********************************PAGINAÇAO *********************************************/
 if (isset($_POST["PAGINACAO"])) {
@@ -803,11 +795,6 @@ if ($quantidade_paginas > 0) {
 \';
 echo $paginacao;
 }
-
-
-
-
-
 ';
     file_put_contents($_POST['NOME_TABELA'] . '/' . $_POST['NOME_TABELA'] . '_backend.php', $insert);
 

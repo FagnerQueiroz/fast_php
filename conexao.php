@@ -1,6 +1,6 @@
 <?php
 $drive ='mysql:';
-$dbname ='nome_do_banco';
+$dbname ='pousada';
 $host='host=127.0.0.1';
 $db='dbname='.$dbname;
 $password = '';

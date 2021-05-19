@@ -435,7 +435,7 @@ if(isset($_POST["LISTA_UNICO_REGISTRO"])){
     $resultado = $conexao->query( $consulta );
     if($linha = $resultado->fetch(PDO::FETCH_ASSOC)){
 
-        $array_registro= [' . $linha_registro_unico . '];
+        $array_registro= [' . substr_replace($linha_registro_unico, '', -1) . '];
         echo json_encode($array_registro);
     
 }else{
