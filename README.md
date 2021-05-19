@@ -1,2 +1,2 @@
 # fast_php
-Fast crud php generetor 
+Fast CRUD generator
