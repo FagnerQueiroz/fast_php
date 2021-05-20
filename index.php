@@ -30,7 +30,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="../index2.html" class="logo">
+        <a href="#" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>F</b>PHP</span>
             <!-- logo for regular state and mobile devices -->
@@ -571,7 +571,7 @@
 
         addTabs({
             id: 'dashboard',
-            title: 'FAST CRUD',
+            title: 'Fast CRUD',
             close: false,
             url: 'gera_crud.php',
             urlType: "relative"
@@ -593,7 +593,7 @@
                 children: [
                     {
                         id: "90011",
-                        text: "FAST CRUD",
+                        text: "Fast CRUD",
                         icon: "fa fa-circle-o",
                         url: "gera_crud.php",
                         targetType: "iframe-tab",

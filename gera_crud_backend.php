@@ -402,7 +402,7 @@ if(isset($_POST["LISTAR_REGISTROS"])){
       $i = ($_POST["LISTAR_REGISTROS"]-1);
       $paginacao = \'<nav aria-label="Page navigation example">
   <ul class="pagination">
-  <li class="page-item"><a class="page-link" onclick="lista_registros(\'.($_POST["LISTAR_REGISTROS"]-1).\')">Anterior</a></li>
+  <li style="cursor:pointer" class="page-item"><a  class="page-link" onclick="lista_registros(\'.($_POST["LISTAR_REGISTROS"]-1).\')">Anterior</a></li>
   \';
   $proxima_pagina = ($_POST["LISTAR_REGISTROS"]+1);
    if($proxima_pagina  > $quantidade_paginas ){
@@ -412,10 +412,10 @@ if(isset($_POST["LISTAR_REGISTROS"])){
   if ($quantidade_paginas > 0)  {
       while($i < $quantidade_paginas and $i < ($_POST["LISTAR_REGISTROS"]+5) ){
         $i++;
-        $paginacao.=\'<li class="page-item"><a class="page-link" onclick="lista_registros(\'.$i.\')">\'.$i.\'</a></li>\';
+        $paginacao.=\'<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="lista_registros(\'.$i.\')">\'.$i.\'</a></li>\';
       }
   }
-      $paginacao.=\'<li class="page-item"><a class="page-link" onclick="lista_registros(\'.$proxima_pagina.\')" >Próximo</a></li>
+      $paginacao.=\'<li style="cursor:pointer" class="page-item"><a class="page-link" onclick="lista_registros(\'.$proxima_pagina.\')" >Próximo</a></li>
       </ul>
     </nav>
   \';
