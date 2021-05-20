@@ -7,7 +7,7 @@ if (isset($_POST['NOME_TABELA'])) {
     $campos_insert = '(';
     $bind_paramentros = '';
     $valores_insert = '(';
-    $cabecalho_lista = '<th scope="col">#</th>';
+    $cabecalho_lista = '<th scope="col"><i data-bs-toggle="modal" data-bs-target="#modal_' . $_POST['NOME_TABELA_DETALHE'] . '"  style="color:#0d6efd;cursor:pointer"  onclick="abrir_registro(0)" class="fas fa-plus-square fa-lg"></i></th>';
     $select_lista = '';
     $linha_registro = '';
     $linha_registro_unico = '';
@@ -77,8 +77,9 @@ window.onload = function() {
             <form id="form_' . $_POST['NOME_TABELA'] . '" class="row g-3">';
     $form .= $form_edit;
     $form .= '<div class="row">
-    <div form-group col-md-2>
-    <button id="btn_salvar_' . $_POST['NOME_TABELA'] . '"   type="button" class="btn btn-primary mb-3">Salvar</button>
+    <div form-group col-md-3>
+    <button style="margin-top:10px" id="btn_salvar_' . $_POST['NOME_TABELA'] . '"   type="button" class="btn btn-primary mb-3">Salvar</button>
+    <button style="margin-top:10px" id="btn_novo_' . $_POST['NOME_TABELA'] . '"   type="button" class="btn btn-primary mb-3">Novo</button>
 </div>
 </div>
 
@@ -119,6 +120,11 @@ $(document).ready(function() {
            
             }
         });
+    });
+
+
+    $("#btn_novo_' . $_POST['NOME_TABELA'] . '").click(function() {
+        window.location.href = "' . $_POST['NOME_TABELA'] . '.php";
     });
 });
 
@@ -306,8 +312,11 @@ function seleciona_registro_excluir(id){
 }
 
 function abrir_registro(id){
-
+if(id > 0){
     window.location.href = "' . $_POST['NOME_TABELA'] . '.php?master_id="+id;
+}else{
+    window.location.href = "' . $_POST['NOME_TABELA'] . '.php";
+}
 }
 </script>
 </body>

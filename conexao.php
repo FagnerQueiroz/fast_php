@@ -1,6 +1,6 @@
 <?php
 $drive ='mysql:';
-$dbname ='pousada';
+$dbname ='fast_php';
 $host='host=127.0.0.1';
 $db='dbname='.$dbname;
 $password = '';

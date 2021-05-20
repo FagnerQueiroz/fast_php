@@ -7,7 +7,7 @@ if (isset($_POST['NOME_TABELA'])) {
     $campos_insert = '(';
     $bind_paramentros = '';
     $valores_insert = '(';
-    $cabecalho_lista = '<th scope="col">#</th>';
+    $cabecalho_lista = '<th scope="col"><i data-bs-toggle="modal" data-bs-target="#modal_' . $_POST['NOME_TABELA_DETALHE'] . '"  style="color:#0d6efd;cursor:pointer"  onclick="abrir_registro(0)" class="fas fa-plus-square fa-lg"></i></th>';
     $select_lista = '';
     $linha_registro = '';
     $linha_registro_unico = '';
@@ -118,7 +118,7 @@ window.onload = function() {
     $form .= '<div class="row">
     <div form-group col-md-2>
     <button id="btn_salvar_' . $_POST['NOME_TABELA'] . '"   type="button" class="btn btn-primary mb-3">Salvar</button>
-<button id="btn_novo_' . $_POST['NOME_TABELA'] . '"   type="button" class="btn btn-primary mb-3">Novo</button>
+    <button id="btn_novo_' . $_POST['NOME_TABELA'] . '"   type="button" class="btn btn-primary mb-3">Novo</button>
              
 </div>
 </div>
@@ -489,9 +489,13 @@ function seleciona_registro_excluir(id){
 }
 
 function abrir_registro(id){
-
+      if(id > 0){
     window.location.href = "' . $_POST['NOME_TABELA'] . '.php?master_id="+id;
+      }else{
+        window.location.href = "' . $_POST['NOME_TABELA'] . '.php"; 
+      }
 }
+
 </script>
 </body>
                 ';
@@ -638,6 +642,7 @@ if(isset($_POST["LISTAR_REGISTROS"])){
   }
       $paginacao.=\'<li class="page-item"><a style="cursor:pointer"class="page-link" onclick="lista_registros(\'.$proxima_pagina.\')" >Próximo</a></li>
       </ul>
+      
     </nav>
   \';
 
